@@ -29,6 +29,7 @@ body {
     letter-spacing: 0.2rem;
     font-size: 18px;
     margin: 30px;
+    height: 22px;
 }
 .reset {
     text-transform: uppercase;
