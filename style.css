@@ -2,8 +2,69 @@
 
 /* MAIN CSS */
 html {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0 auto;
-  font-family: monospace;
+    padding: 0;
+    margin: 0;
+    font-family: monospace;
+}
+body {
+}
+.container {
+    width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 3rem;
+    letter-spacing: 0.5rem;
+    border-bottom: thin solid gray;
+}
+.message {
+    text-align: center;
+    letter-spacing: 0.2rem;
+    font-size: 18px;
+    margin: 30px;
+}
+.reset {
+    text-transform: uppercase;
+    width: 100px;
+    height: 50px;
+    margin: 30px;
+}
+
+/* BOARD CSS */
+.board-container {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.board-unit {
+    width: 100px;
+    height: 100px;
+    box-sizing: border-box;
+}
+.board-unit:nth-child(2),
+.board-unit:nth-child(3),
+.board-unit:nth-child(5),
+.board-unit:nth-child(6),
+.board-unit:nth-child(8),
+.board-unit:nth-child(9) {
+    border-left: 3px solid black;
+}
+.board-unit:nth-child(4),
+.board-unit:nth-child(5),
+.board-unit:nth-child(6),
+.board-unit:nth-child(7),
+.board-unit:nth-child(8),
+.board-unit:nth-child(9) {
+    border-top: 3px solid black;
+}
+.board-unit:hover {
+    background-color: lightgray;
 }
