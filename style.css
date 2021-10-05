@@ -1,0 +1,9 @@
+/* style.css */
+
+/* MAIN CSS */
+html {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0 auto;
+  font-family: monospace;
+}

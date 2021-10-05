@@ -1,0 +1,2 @@
+// script.js //
+"use strict";
