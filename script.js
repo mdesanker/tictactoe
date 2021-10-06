@@ -10,9 +10,6 @@ const Player = sign => {
     return { getSign };
 };
 
-const playerX = Player('X');
-console.log(playerX.getSign());
-
 // Gameboard module controls modification of gameboard
 const Gameboard = (() => {
     let board = ['', '', '', '', '', '', '', '', ''];
@@ -50,12 +47,9 @@ const DisplayController = (() => {
     boardUnits.forEach(unit => {
         unit.addEventListener('click', e => {
             if (e.target.textContent === '' && gameIsOn) {
-                console.log(unit.dataset.index);
-                Gameboard.setSign(
-                    unit.dataset.index,
-                    getCurrentPlayerSign(round)
-                );
-                checkWinner(unit.dataset.index);
+                let currentIndex = parseInt(unit.dataset.index);
+                Gameboard.setSign(currentIndex, getCurrentPlayerSign(round));
+                checkWinner(currentIndex);
                 updateGameboard();
             }
             if (round !== 9) {
@@ -86,10 +80,19 @@ const DisplayController = (() => {
         }
 
         // Filter down to relevant winning conditions
-        const relevant = winningConditions.filter(condition =>
+        let relevant = winningConditions.filter(condition =>
             condition.includes(index)
         );
         console.log(relevant);
+        // Loop through each relevant condition
+        relevant.forEach(condition => {
+            console.log(condition);
+            // Map signs to array
+            let signs = condition.map(val => Gameboard.getSign(val));
+            console.log(signs);
+            // Check all signs are identical
+            console.log(signs.every((val, _, arr) => val === arr[0]));
+        });
     };
 
     const reset = () => {
@@ -114,4 +117,6 @@ const DisplayController = (() => {
     const displayMessage = message => {
         messageOutput.textContent = message;
     };
+
+    return { checkWinner };
 })();
