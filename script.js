@@ -52,7 +52,7 @@ const DisplayController = (() => {
                 checkWinner(currentIndex);
                 updateGameboard();
             }
-            if (round !== 9) {
+            if (round !== 9 && gameIsOn) {
                 round++;
                 displayMessage(
                     `Player ${getCurrentPlayerSign(round)}\'s turn:`
@@ -91,7 +91,12 @@ const DisplayController = (() => {
             let signs = condition.map(val => Gameboard.getSign(val));
             console.log(signs);
             // Check all signs are identical
-            console.log(signs.every((val, _, arr) => val === arr[0]));
+            if (signs.every((val, _, arr) => val === arr[0])) {
+                gameIsOn = false;
+                displayMessage(
+                    `Player ${getCurrentPlayerSign(round)} is the winner!`
+                );
+            }
         });
     };
 
