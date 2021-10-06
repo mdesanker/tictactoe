@@ -38,5 +38,19 @@ const Gameboard = (() => {
 
 // Display controller module controls screen and gameplay
 const DisplayController = (() => {
-    // Code here
+    const boardUnits = document.querySelectorAll('.board-unit');
+    const message = document.querySelector('.message');
+    const resetBtn = document.querySelector('.reset');
+    let round = 1;
+    let gameIsOn = true;
+
+    boardUnits.forEach(unit => {
+        unit.addEventListener('click', e => {
+            if (e.target.textContent === '' && gameIsOn) {
+                console.log(unit.dataset.index);
+            }
+        });
+    });
+
+    const updateGameboard = () => {};
 })();
