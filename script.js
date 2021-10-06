@@ -15,7 +15,7 @@ console.log(playerX.getSign());
 
 // Gameboard module controls modification of gameboard
 const Gameboard = (() => {
-    let board = ['', 'X', '', '', '', 'O', '', '', ''];
+    let board = ['', '', '', '', '', '', '', '', ''];
 
     const getSign = index => {
         return board[index];

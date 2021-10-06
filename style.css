@@ -49,6 +49,10 @@ body {
     width: 100px;
     height: 100px;
     box-sizing: border-box;
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .board-unit:nth-child(2),
 .board-unit:nth-child(3),
