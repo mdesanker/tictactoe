@@ -58,8 +58,12 @@ const DisplayController = (() => {
                 checkWinner(unit.dataset.index);
                 updateGameboard();
             }
-            round++;
-            displayMessage(`Player ${getCurrentPlayerSign(round)}\'s turn:`);
+            if (round !== 9) {
+                round++;
+                displayMessage(
+                    `Player ${getCurrentPlayerSign(round)}\'s turn:`
+                );
+            }
         });
     });
 
