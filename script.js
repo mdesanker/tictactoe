@@ -21,7 +21,7 @@ const Gameboard = (() => {
         return board[index];
     };
 
-    const addSign = (index, sign) => {
+    const setSign = (index, sign) => {
         if (board[index] === '') {
             board[index] = sign;
         }
@@ -33,7 +33,7 @@ const Gameboard = (() => {
         });
     };
 
-    return { getSign, addSign, reset, board };
+    return { getSign, setSign, reset, board };
 })();
 
 // Display controller module controls screen and gameplay
@@ -51,7 +51,7 @@ const DisplayController = (() => {
         unit.addEventListener('click', e => {
             if (e.target.textContent === '' && gameIsOn) {
                 console.log(unit.dataset.index);
-                Gameboard.addSign(
+                Gameboard.setSign(
                     unit.dataset.index,
                     getCurrentPlayerSign(round)
                 );
@@ -60,6 +60,15 @@ const DisplayController = (() => {
             round++;
         });
     });
+
+    const reset = () => {
+        Gameboard.reset();
+        round = 1;
+        gameIsOn = true;
+        updateGameboard();
+    };
+
+    resetBtn.addEventListener('click', reset);
 
     const getCurrentPlayerSign = round =>
         round % 2 === 1 ? playerX.getSign() : playerO.getSign();
