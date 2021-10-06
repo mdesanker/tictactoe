@@ -39,7 +39,7 @@ const Gameboard = (() => {
 // Display controller module controls screen and gameplay
 const DisplayController = (() => {
     const boardUnits = document.querySelectorAll('.board-unit');
-    const message = document.querySelector('.message');
+    const messageOutput = document.querySelector('.message');
     const resetBtn = document.querySelector('.reset');
     let round = 1;
     let gameIsOn = true;
@@ -55,17 +55,45 @@ const DisplayController = (() => {
                     unit.dataset.index,
                     getCurrentPlayerSign(round)
                 );
+                checkWinner(unit.dataset.index);
                 updateGameboard();
             }
             round++;
+            displayMessage(`Player ${getCurrentPlayerSign(round)}\'s turn:`);
         });
     });
+
+    const checkWinner = index => {
+        const winningConditions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ];
+
+        // Draw
+        if (round === 9) {
+            gameIsOn = false;
+            displayMessage('The game is a draw!');
+        }
+
+        // Filter down to relevant winning conditions
+        const relevant = winningConditions.filter(condition =>
+            condition.includes(index)
+        );
+        console.log(relevant);
+    };
 
     const reset = () => {
         Gameboard.reset();
         round = 1;
         gameIsOn = true;
         updateGameboard();
+        displayMessage(`Player ${getCurrentPlayerSign(round)}\'s turn:`);
     };
 
     resetBtn.addEventListener('click', reset);
@@ -77,5 +105,9 @@ const DisplayController = (() => {
         boardUnits.forEach((unit, index) => {
             unit.textContent = Gameboard.getSign(index);
         });
+    };
+
+    const displayMessage = message => {
+        messageOutput.textContent = message;
     };
 })();
