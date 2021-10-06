@@ -2,6 +2,8 @@ Tic Tac Toe game made with HTML, CSS, and JavaScript.
 
 Simple Tic Tac Toe broswer game played between two human players.
 
+Live demo [here](https://mdesanker.github.io/tictactoe/)
+
 Learned:
 
 -   How to use factory functions to generate multiple objects
