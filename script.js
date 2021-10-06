@@ -44,13 +44,29 @@ const DisplayController = (() => {
     let round = 1;
     let gameIsOn = true;
 
+    const playerX = Player('X');
+    const playerO = Player('O');
+
     boardUnits.forEach(unit => {
         unit.addEventListener('click', e => {
             if (e.target.textContent === '' && gameIsOn) {
                 console.log(unit.dataset.index);
+                Gameboard.addSign(
+                    unit.dataset.index,
+                    getCurrentPlayerSign(round)
+                );
+                updateGameboard();
             }
+            round++;
         });
     });
 
-    const updateGameboard = () => {};
+    const getCurrentPlayerSign = round =>
+        round % 2 === 1 ? playerX.getSign() : playerO.getSign();
+
+    const updateGameboard = () => {
+        boardUnits.forEach((unit, index) => {
+            unit.textContent = Gameboard.getSign(index);
+        });
+    };
 })();
