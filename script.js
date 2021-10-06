@@ -30,17 +30,19 @@ const Gameboard = (() => {
         });
     };
 
-    return { getSign, setSign, reset, board };
+    return { getSign, setSign, reset };
 })();
 
 // Display controller module controls screen and gameplay
 const DisplayController = (() => {
+    // Game elements
     const boardUnits = document.querySelectorAll('.board-unit');
     const messageOutput = document.querySelector('.message');
     const resetBtn = document.querySelector('.reset');
     let round = 1;
     let gameIsOn = true;
 
+    // Create player objects
     const playerX = Player('X');
     const playerO = Player('O');
 
@@ -83,15 +85,13 @@ const DisplayController = (() => {
         let relevant = winningConditions.filter(condition =>
             condition.includes(index)
         );
-        console.log(relevant);
         // Loop through each relevant condition
         relevant.forEach(condition => {
-            console.log(condition);
             // Map signs to array
             let signs = condition.map(val => Gameboard.getSign(val));
-            console.log(signs);
             // Check all signs are identical
             if (signs.every((val, _, arr) => val === arr[0])) {
+                // If all signs equal > end game, declare winner
                 gameIsOn = false;
                 displayMessage(
                     `Player ${getCurrentPlayerSign(round)} is the winner!`
@@ -122,6 +122,4 @@ const DisplayController = (() => {
     const displayMessage = message => {
         messageOutput.textContent = message;
     };
-
-    return { checkWinner };
 })();
